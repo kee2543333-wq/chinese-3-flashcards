@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>แฟลชการ์ด สอบสนทนาภาษาจีนธุรกิจ บทที่ 10–15</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --porcelain:#EEF2F8;
+    --glaze:#FFFFFF;
+    --cobalt:#1E3F8F;
+    --cobalt-soft:#C8D5EE;
+    --wash:#E3EAF6;
+    --ink:#1B2233;
+    --muted:#5B6479;
+    --gold:#A87B22;
+    --gold-soft:#F4E9CF;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--porcelain);
+    color:var(--ink);
+    font-family:"Sarabun",system-ui,sans-serif;
+    font-size:16px;line-height:1.5;
+    min-height:100vh;
+    padding:16px 14px calc(24px + env(safe-area-inset-bottom));
+  }
+  .wrap{max-width:560px;margin:0 auto}
+  h1{font-size:1.25rem;margin:0;font-weight:700;color:var(--cobalt)}
+  .sub{margin:2px 0 14px;color:var(--muted);font-size:.92rem}
+
+  .seg{display:flex;background:var(--wash);border-radius:12px;padding:3px;gap:3px;margin-bottom:8px}
+  .seg button{flex:1;border:0;background:transparent;font:inherit;font-size:.86rem;padding:8px 4px;border-radius:9px;color:var(--muted);cursor:pointer}
+  .seg button[aria-pressed="true"]{background:var(--glaze);color:var(--cobalt);font-weight:700;box-shadow:0 1px 2px rgba(30,63,143,.15)}
+  .row{display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+  .chip{border:1.5px solid var(--cobalt-soft);background:var(--glaze);color:var(--cobalt);font:inherit;font-size:.86rem;padding:6px 12px;border-radius:999px;cursor:pointer}
+  .chip[aria-pressed="true"]{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
+  .spacer{flex:1}
+
+  .progress{display:flex;align-items:center;gap:10px;font-size:.86rem;color:var(--muted);margin-bottom:12px}
+  .bar{flex:1;height:6px;background:var(--wash);border-radius:3px;overflow:hidden}
+  .bar i{display:block;height:100%;background:var(--gold);width:0;transition:width .3s}
+
+  /* The plate */
+  .card{display:grid;perspective:1400px;cursor:pointer;-webkit-tap-highlight-color:transparent;outline:none}
+  .face{
+    grid-area:1/1;
+    background:var(--glaze);
+    border-radius:22px;
+    padding:26px 22px 20px;
+    min-height:340px;
+    backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    transition:transform .5s cubic-bezier(.3,.7,.2,1);
+    box-shadow:0 0 0 1px var(--cobalt-soft), inset 0 0 0 7px var(--glaze), inset 0 0 0 8.5px var(--cobalt), inset 0 0 0 11px var(--glaze), inset 0 0 0 12px var(--cobalt-soft);
+    display:flex;flex-direction:column;
+  }
+  .back{transform:rotateY(180deg)}
+  .card.flipped .front{transform:rotateY(-180deg)}
+  .card.flipped .back{transform:rotateY(0)}
+  .card:focus-visible .face{box-shadow:0 0 0 3px var(--gold), inset 0 0 0 7px var(--glaze), inset 0 0 0 8.5px var(--cobalt), inset 0 0 0 11px var(--glaze), inset 0 0 0 12px var(--cobalt-soft)}
+
+  .top{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .seal{width:44px;height:44px;border-radius:50%;background:var(--cobalt);color:#fff;display:grid;place-items:center;font-weight:700;font-size:1.1rem;flex:none}
+  .kind{font-size:.85rem;color:var(--muted)}
+  .known-tag{margin-left:auto;font-size:.8rem;background:var(--gold-soft);color:var(--gold);padding:3px 10px;border-radius:999px;font-weight:600}
+
+  .zh{font-family:"Noto Serif SC","Songti SC","SimSun",serif;font-weight:500;font-size:1.55rem;line-height:1.55;letter-spacing:.04em;margin:0}
+  .py{color:var(--cobalt);font-size:.98rem;margin:4px 0 0}
+  .th{color:var(--muted);font-size:1rem;margin:8px 0 0}
+  .hidepy .py{display:none}
+  .line+.line{margin-top:16px;padding-top:14px;border-top:1px dashed var(--cobalt-soft)}
+  .ans .zh{font-size:1.4rem}
+
+  .tip{margin-top:16px;background:var(--wash);border-radius:12px;padding:10px 12px;font-size:.92rem}
+  .tip b{color:var(--cobalt)}
+  .tip .zh{font-size:1.05rem;display:inline}
+
+  .foot{margin-top:auto;padding-top:16px;display:flex;align-items:center;gap:8px}
+  .speak{border:0;background:var(--wash);color:var(--cobalt);font:inherit;font-size:.9rem;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer}
+  .hint{margin-left:auto;font-size:.82rem;color:var(--muted)}
+
+  .actions{display:grid;grid-template-columns:52px 1fr 1fr 52px;gap:8px;margin-top:14px}
+  .actions button{font:inherit;border-radius:14px;padding:13px 6px;cursor:pointer;font-weight:600;font-size:.95rem}
+  .nav{border:1.5px solid var(--cobalt-soft);background:var(--glaze);color:var(--cobalt);font-size:1.4rem !important;line-height:1}
+  .again{border:1.5px solid var(--cobalt-soft);background:var(--glaze);color:var(--ink)}
+  .got{border:0;background:var(--cobalt);color:#fff}
+  button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .counter{text-align:center;font-size:.85rem;color:var(--muted);margin-top:10px}
+
+  .empty{background:var(--glaze);border-radius:22px;padding:40px 24px;text-align:center;box-shadow:0 0 0 1px var(--cobalt-soft)}
+  .empty p{margin:0 0 14px}
+
+  @media (prefers-reduced-motion:reduce){.face,.bar i{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>ซ้อมสอบสนทนา ภาษาจีนธุรกิจ บทที่ 10–15</h1>
+  <p class="sub">สอบวันพุธที่ 30 ก.ย. 2569 สุ่ม 6 จาก 12 ข้อ</p>
+
+  <div class="seg" id="filter" role="group" aria-label="เลือกชุดคำถาม">
+    <button data-f="all" aria-pressed="true">ทั้งหมด</button>
+    <button data-f="short" aria-pressed="false">สั้น 1–6</button>
+    <button data-f="long" aria-pressed="false">ยาว 7–12</button>
+    <button data-f="todo" aria-pressed="false">ยังไม่แม่น</button>
+  </div>
+
+  <div class="row">
+    <div class="seg" id="mode" role="group" aria-label="โหมดฝึก" style="margin:0;flex:1 1 220px">
+      <button data-m="q" aria-pressed="true">ฟังคำถาม แล้วตอบ</button>
+      <button data-m="th" aria-pressed="false">ดูไทย แล้วพูดจีน</button>
+    </div>
+    <button class="chip" id="pyBtn" aria-pressed="true">พินอิน</button>
+    <button class="chip" id="shuffleBtn" aria-pressed="false">สุ่มลำดับ</button>
+  </div>
+
+  <div class="progress"><span id="progText">จำได้ 0/12</span><div class="bar"><i id="progBar"></i></div></div>
+
+  <div id="stage"></div>
+</div>
+
+<script>
+const DATA = [
+  {n:1,q:{zh:"你在公司做什么工作？",py:"Nǐ zài gōngsī zuò shénme gōngzuò?",th:"คุณทำงานอะไรอยู่ที่บริษัท"},
+   a:[{zh:"我是公司职员。",py:"Wǒ shì gōngsī zhíyuán.",th:"ฉันเป็นพนักงานบริษัท"},
+      {zh:"我是……的职员。",py:"Wǒ shì …… de zhíyuán.",th:"ฉันเป็นพนักงาน(ของ/ตำแหน่ง)……"}],
+   tip:'เติมให้เป็นของตัวเอง เช่น <span class="zh">我是银行职员。</span> Wǒ shì yínháng zhíyuán. ฉันเป็นพนักงานธนาคาร'},
+  {n:2,q:{zh:"你工作的公司在哪里？",py:"Nǐ gōngzuò de gōngsī zài nǎlǐ?",th:"บริษัทที่คุณทำงานอยู่ที่ไหน"},
+   a:[{zh:"我工作的公司在曼谷。",py:"Wǒ gōngzuò de gōngsī zài Màngǔ.",th:"บริษัทที่ฉันทำงานอยู่ที่กรุงเทพฯ"}],
+   tip:'<b>曼谷</b> Màngǔ = กรุงเทพฯ ใช้ซ้ำในข้อ 3 ได้'},
+  {n:3,q:{zh:"你家住在哪里？交通方便吗？",py:"Nǐ jiā zhù zài nǎlǐ? Jiāotōng fāngbiàn ma?",th:"บ้านคุณอยู่ที่ไหน การเดินทางสะดวกไหม"},
+   a:[{zh:"我家住在曼谷。",py:"Wǒ jiā zhù zài Màngǔ.",th:"บ้านฉันอยู่ที่กรุงเทพฯ"},
+      {zh:"交通很方便。/ 交通不方便。",py:"Jiāotōng hěn fāngbiàn. / Jiāotōng bù fāngbiàn.",th:"การจราจรสะดวกมาก / ไม่สะดวก"}],
+   tip:'<b>方便</b> fāngbiàn = สะดวก ใช้ในข้อ 8 และ 9 ด้วย'},
+  {n:4,q:{zh:"你常出差吗？去哪里？",py:"Nǐ cháng chūchāi ma? Qù nǎlǐ?",th:"คุณไปทำงานนอกสถานที่บ่อยไหม ไปที่ไหน"},
+   a:[{zh:"我常出差。/ 我不常出差。",py:"Wǒ cháng chūchāi. / Wǒ bù cháng chūchāi.",th:"ฉันไปทำงานนอกสถานที่บ่อย / ไม่บ่อย"},
+      {zh:"去……出差。",py:"Qù …… chūchāi.",th:"ไปทำงานนอกสถานที่ที่……"}],
+   tip:'โครงสร้าง <b>去 + สถานที่ + 出差</b> เช่น <span class="zh">去清迈出差。</span> Qù Qīngmài chūchāi. ไปเชียงใหม่'},
+  {n:5,q:{zh:"你知道现在人民币跟泰铢的汇率是多少吗？",py:"Nǐ zhīdào xiànzài rénmínbì gēn tàizhū de huìlǜ shì duōshao ma?",th:"คุณรู้ไหมว่าตอนนี้อัตราแลกเปลี่ยนเงินหยวนกับเงินบาทเท่าไร"},
+   a:[{zh:"我不知道。",py:"Wǒ bù zhīdào.",th:"ฉันไม่รู้"},
+      {zh:"大概人民币跟泰铢1元换5泰铢。",py:"Dàgài rénmínbì gēn tàizhū yì yuán huàn wǔ tàizhū.",th:"เงินหยวนกับเงินบาท ประมาณ 1 หยวน แลกได้ 5 บาท"}],
+   tip:'<b>汇率</b> huìlǜ = อัตราแลกเปลี่ยน, <b>大概</b> dàgài = ประมาณ'},
+  {n:6,q:{zh:"现在泰国的天气怎么样？",py:"Xiànzài Tàiguó de tiānqì zěnmeyàng?",th:"ตอนนี้สภาพอากาศของประเทศไทยเป็นอย่างไรบ้าง"},
+   a:[{zh:"现在泰国的天气最近都下雨。",py:"Xiànzài Tàiguó de tiānqì zuìjìn dōu xià yǔ.",th:"ตอนนี้สภาพอากาศของไทย ช่วงนี้ฝนตก"},
+      {zh:"每天下午都下雨。",py:"Měitiān xiàwǔ dōu xià yǔ.",th:"ทุกบ่ายฝนตก"}],
+   tip:'<b>最近</b> zuìjìn = ช่วงนี้, <b>每天</b> měitiān = ทุกวัน'},
+  {n:7,q:{zh:"当你打电话你公司，你要找的人不在时，你要说什么？",py:"Dāng nǐ dǎ diànhuà nǐ gōngsī, nǐ yào zhǎo de rén bú zài shí, nǐ yào shuō shénme?",th:"เมื่อคุณโทรไปที่บริษัท แล้วคนที่คุณต้องการหาไม่อยู่ คุณจะพูดว่าอะไร"},
+   a:[{zh:"他什么时候来，给我打电话。",py:"Tā shénme shíhou lái, gěi wǒ dǎ diànhuà.",th:"เขามาเมื่อไร ให้โทรหาฉันหน่อย"}],
+   tip:'<b>当……时</b> dāng……shí = ตอนที่…/เมื่อ…<br>แบบที่ฟังเป็นธรรมชาติขึ้น: <span class="zh">他回来的时候，请让他给我回电话。</span> Tā huílái de shíhou, qǐng ràng tā gěi wǒ huí diànhuà.'},
+  {n:8,q:{zh:"当你打电话约对方的公司谈合同时，要怎么说？",py:"Dāng nǐ dǎ diànhuà yuē duìfāng de gōngsī tán hétong shí, yào zěnme shuō?",th:"เมื่อคุณโทรไปนัดบริษัทอีกฝ่ายเพื่อคุยเรื่องสัญญา คุณจะพูดว่าอย่างไร"},
+   a:[{zh:"我想约您谈合同，您什么时候方便？",py:"Wǒ xiǎng yuē nín tán hétong, nín shénme shíhou fāngbiàn?",th:"ฉันอยากนัดท่านเพื่อคุยเรื่องสัญญา ท่านสะดวกเมื่อไร"}],
+   tip:'<b>约</b> yuē = นัด, <b>谈合同</b> tán hétong = คุยเรื่องสัญญา, <b>您</b> nín = ท่าน (สุภาพ)'},
+  {n:9,q:{zh:"请说一说你所在城市的交通情况。",py:"Qǐng shuō yi shuō nǐ suǒzài chéngshì de jiāotōng qíngkuàng.",th:"กรุณาพูดถึงสภาพการจราจรของเมืองที่คุณอาศัยอยู่"},
+   a:[{zh:"我所在城市的交通比较方便。/ 不方便。",py:"Wǒ suǒzài chéngshì de jiāotōng bǐjiào fāngbiàn. / Bù fāngbiàn.",th:"การจราจรของเมืองที่ฉันอยู่ค่อนข้างสะดวก / ไม่สะดวก"}],
+   tip:'ในรูปมีมือบังคำหนึ่ง แต่คำแปลไทยเขียนว่า "ค่อนข้าง" ซึ่งตรงกับ <b>比较</b> bǐjiào เช็กกับชีทของอาจารย์อีกครั้งนะคะ'},
+  {n:10,q:{zh:"请说一下你去出差国家或去旅游过的国家的一些禁忌或趣事。",py:"Qǐng shuō yíxià nǐ qù chūchāi guójiā huò qù lǚyóu guo de guójiā de yìxiē jìnjì huò qùshì.",th:"กรุณาเล่าเรื่องข้อห้าม/ข้อควรระวัง หรือเรื่องน่าสนใจของประเทศที่คุณเคยไปทำงานหรือไปเที่ยว"},
+   a:[{zh:"我去中国旅游过。中国有一些禁忌，",py:"Wǒ qù Zhōngguó lǚyóu guo. Zhōngguó yǒu yìxiē jìnjì,",th:"ฉันเคยไปเที่ยวเมืองจีน เมืองจีนมีข้อห้ามจำนวนหนึ่ง"},
+      {zh:"比如：吃饭时，不能插筷子在饭里。",py:"Bǐrú: chī fàn shí, bù néng chā kuàizi zài fàn lǐ.",th:"เช่น ตอนกินข้าว ห้ามปักตะเกียบในชามข้าว"},
+      {zh:"在中国，吃饭时，不能插筷子在饭里。",py:"Zài Zhōngguó, chī fàn shí, bù néng chā kuàizi zài fàn lǐ.",th:"(แบบสั้น) ที่เมืองจีน ตอนกินข้าว ห้ามปักตะเกียบในชามข้าว"}],
+   tip:'<b>禁忌</b> jìnjì = ข้อห้าม, <b>或者</b> huòzhě = หรือไม่ก็, <b>过</b> guo = เคย'},
+  {n:11,q:{zh:"如果在中国要用泰铢换人民币，你要去哪里兑换，并如何询问。",py:"Rúguǒ zài Zhōngguó yào yòng tàizhū huàn rénmínbì, nǐ yào qù nǎlǐ duìhuàn, bìng rúhé xúnwèn.",th:"ถ้าต้องการแลกเงินบาทเป็นเงินหยวนที่เมืองจีน คุณจะไปแลกที่ไหน และจะสอบถามอย่างไร"},
+   a:[{zh:"我去银行换钱。",py:"Wǒ qù yínháng huàn qián.",th:"ฉันไปแลกเงินที่ธนาคาร"},
+      {zh:"请问，泰铢换人民币是多少？",py:"Qǐngwèn, tàizhū huàn rénmínbì shì duōshao?",th:"ขอสอบถามหน่อย เงินบาทแลกเป็นเงินหยวนเท่าไร"}],
+   tip:'<b>银行</b> yínháng = ธนาคาร, <b>请问</b> qǐngwèn = ขอถามหน่อย'},
+  {n:12,q:{zh:"说说中国跟泰国的天气，你喜欢哪个？为什么？",py:"Shuōshuo Zhōngguó gēn Tàiguó de tiānqì, nǐ xǐhuan nǎge? Wèishénme?",th:"ลองพูดเกี่ยวกับสภาพอากาศที่จีนกับไทย คุณชอบอันไหน เพราะอะไร"},
+   a:[{zh:"我喜欢泰国的天气。",py:"Wǒ xǐhuan Tàiguó de tiānqì.",th:"ฉันชอบสภาพอากาศของเมืองไทย"},
+      {zh:"因为泰国的天气比中国暖和。",py:"Yīnwèi Tàiguó de tiānqì bǐ Zhōngguó nuǎnhuo.",th:"เพราะสภาพอากาศที่เมืองไทยอบอุ่นกว่าเมืองจีน"}],
+   tip:'โครงสร้าง <b>A 比 B + คุณศัพท์</b> = A…กว่า B, <b>温暖</b> wēnnuǎn = อบอุ่น'}
+];
+
+const S = {filter:"all", mode:"q", showPy:true, shuffled:false, order:DATA.map((_,i)=>i), pos:0, flipped:false, known:new Set()};
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+function list(){
+  return S.order.filter(i=>{
+    const n = DATA[i].n;
+    if(S.filter==="short") return n<=6;
+    if(S.filter==="long") return n>=7;
+    if(S.filter==="todo") return !S.known.has(n);
+    return true;
+  });
+}
+
+function lineHTML(l, showTh=true){
+  return `<div class="line"><p class="zh">${esc(l.zh)}</p><p class="py">${esc(l.py)}</p>${showTh?`<p class="th">${esc(l.th)}</p>`:""}</div>`;
+}
+
+function render(){
+  const L = list();
+  if(S.pos >= L.length) S.pos = Math.max(0, L.length-1);
+  $("progText").textContent = `จำได้ ${S.known.size}/12`;
+  $("progBar").style.width = (S.known.size/12*100)+"%";
+  const stage = $("stage");
+
+  if(!L.length){
+    stage.innerHTML = `<div class="empty"><p>ท่องครบทุกข้อในชุดนี้แล้ว</p><button class="chip" id="toAll">ทบทวนทั้งหมดอีกรอบ</button></div>`;
+    $("toAll").onclick = ()=>setFilter("all");
+    return;
+  }
+
+  const d = DATA[L[S.pos]];
+  const isKnown = S.known.has(d.n);
+  const kind = d.n<=6 ? "คำถามสั้น" : "คำถามยาว";
+  const top = `<div class="top"><div class="seal">${d.n}</div><div class="kind">${kind}</div>${isKnown?'<span class="known-tag">จำได้แล้ว</span>':""}</div>`;
+
+  let front, back;
+  if(S.mode==="q"){
+    front = `${top}<p class="zh">${esc(d.q.zh)}</p><p class="py">${esc(d.q.py)}</p><p class="th">${esc(d.q.th)}</p>
+      <div class="foot"><button class="speak" data-say="q">ฟังคำถาม</button><span class="hint">แตะเพื่อดูคำตอบ</span></div>`;
+  } else {
+    front = `${top}<p class="kind" style="margin:0 0 8px">พูดคำตอบนี้เป็นภาษาจีน</p>
+      ${d.a.map(l=>`<p class="th" style="color:var(--ink);font-size:1.12rem;margin:0 0 10px">${esc(l.th)}</p>`).join("")}
+      <p class="th" style="font-size:.9rem">คำถาม: ${esc(d.q.th)}</p>
+      <div class="foot"><span class="hint">แตะเพื่อเฉลย</span></div>`;
+  }
+  back = `${top}<div class="kind" style="margin-bottom:10px">คำตอบ</div><div class="ans">${d.a.map(l=>lineHTML(l)).join("")}</div>
+    ${d.tip?`<div class="tip">${d.tip}</div>`:""}
+    <div class="foot"><button class="speak" data-say="a">ฟังคำตอบ</button><span class="hint">แตะเพื่อกลับ</span></div>`;
+
+  stage.innerHTML = `
+    <div class="card ${S.flipped?"flipped":""} ${S.showPy?"":"hidepy"}" id="card" tabindex="0" role="button" aria-label="การ์ดข้อ ${d.n} แตะเพื่อพลิก">
+      <div class="face front" aria-hidden="${S.flipped}">${front}</div>
+      <div class="face back" aria-hidden="${!S.flipped}">${back}</div>
+    </div>
+    <div class="actions">
+      <button class="nav" id="prev" aria-label="ข้อก่อนหน้า">‹</button>
+      <button class="again" id="again">ยังไม่แม่น</button>
+      <button class="got" id="got">จำได้แล้ว</button>
+      <button class="nav" id="next" aria-label="ข้อถัดไป">›</button>
+    </div>
+    <div class="counter">การ์ด ${S.pos+1} จาก ${L.length}</div>`;
+
+  const card = $("card");
+  card.onclick = e => { if(e.target.closest(".speak")) return; flip(); };
+  card.onkeydown = e => { if(e.key==="Enter"){e.preventDefault();flip();} };
+  stage.querySelectorAll(".speak").forEach(b=>b.onclick=e=>{
+    e.stopPropagation();
+    speak(b.dataset.say==="q" ? d.q.zh : d.a.map(l=>l.zh).join(""));
+  });
+  $("prev").onclick = ()=>go(-1);
+  $("next").onclick = ()=>go(1);
+  $("got").onclick = ()=>mark(d.n,true);
+  $("again").onclick = ()=>mark(d.n,false);
+
+  let x0=null;
+  card.addEventListener("touchstart",e=>{x0=e.touches[0].clientX},{passive:true});
+  card.addEventListener("touchend",e=>{
+    if(x0===null) return; const dx=e.changedTouches[0].clientX-x0; x0=null;
+    if(Math.abs(dx)>60){ go(dx<0?1:-1); }
+  });
+}
+
+function flip(){ S.flipped=!S.flipped; $("card").classList.toggle("flipped",S.flipped); }
+function go(step){
+  const L=list(); if(!L.length) return;
+  S.pos=(S.pos+step+L.length)%L.length; S.flipped=false; render();
+}
+function mark(n,ok){
+  if(ok) S.known.add(n); else S.known.delete(n);
+  save();
+  if(S.filter==="todo" && ok){ S.flipped=false; render(); return; }
+  go(1);
+}
+
+function speak(text){
+  if(!("speechSynthesis" in window)) return;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text.replace(/……/g,"，"));
+  u.lang="zh-CN"; u.rate=.8;
+  const v=speechSynthesis.getVoices().find(v=>/^zh(-|_)?(CN|Hans)?/i.test(v.lang));
+  if(v) u.voice=v;
+  speechSynthesis.speak(u);
+}
+
+function setPressed(groupId, attr, val){
+  document.querySelectorAll(`#${groupId} button`).forEach(b=>b.setAttribute("aria-pressed", b.dataset[attr]===val));
+}
+function setFilter(f){ S.filter=f; S.pos=0; S.flipped=false; setPressed("filter","f",f); render(); }
+
+document.querySelectorAll("#filter button").forEach(b=>b.onclick=()=>setFilter(b.dataset.f));
+document.querySelectorAll("#mode button").forEach(b=>b.onclick=()=>{
+  S.mode=b.dataset.m; S.flipped=false; setPressed("mode","m",S.mode); render();
+});
+$("pyBtn").onclick=()=>{ S.showPy=!S.showPy; $("pyBtn").setAttribute("aria-pressed",S.showPy); render(); };
+$("shuffleBtn").onclick=()=>{
+  S.shuffled=!S.shuffled; $("shuffleBtn").setAttribute("aria-pressed",S.shuffled);
+  S.order=DATA.map((_,i)=>i);
+  if(S.shuffled){ for(let i=S.order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[S.order[i],S.order[j]]=[S.order[j],S.order[i]];} }
+  S.pos=0; S.flipped=false; render();
+};
+document.addEventListener("keydown",e=>{
+  if(e.target.tagName==="BUTTON" && (e.key===" "||e.key==="Enter")) return;
+  if(e.key==="ArrowRight") go(1);
+  else if(e.key==="ArrowLeft") go(-1);
+  else if(e.key===" "){ e.preventDefault(); if($("card")) flip(); }
+});
+
+async function save(){
+  try{ if(window.storage) await window.storage.set("zh-exam-known", JSON.stringify([...S.known]), false); }catch(e){}
+}
+async function init(){
+  try{
+    if(window.storage){
+      const r = await window.storage.get("zh-exam-known", false);
+      if(r && r.value) S.known = new Set(JSON.parse(r.value));
+    }
+  }catch(e){}
+  render();
+}
+if("speechSynthesis" in window) speechSynthesis.getVoices();
+init();
+</script>
+</body>
+</html>
